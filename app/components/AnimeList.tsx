@@ -12,7 +12,7 @@ interface Props {
   title: string;
 }
 
-const AnimeList = ({ animeList: popular, title }: Props) => {
+const AnimeList = ({ animeList, title }: Props) => {
   return (
     <div>
       <div className="flex items-center ms-2 mb-2">
@@ -26,7 +26,7 @@ const AnimeList = ({ animeList: popular, title }: Props) => {
         modules={[FreeMode]}
         style={{ paddingLeft: "0.5rem" }}
       >
-        {popular.map((anime) => (
+        {animeList.map((anime) => (
           <SwiperSlide key={anime.id} style={{ width: "auto" }}>
             <AnimeCard anime={anime} />
           </SwiperSlide>

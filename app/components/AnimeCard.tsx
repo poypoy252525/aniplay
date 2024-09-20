@@ -19,7 +19,7 @@ const AnimeCard = ({ anime }: Props) => {
           className="w-full h-full rounded-xl mb-1 object-cover"
         />
       </AspectRatio>
-      <span className="text-center line-clamp-2 text-xs">
+      <span className="text-center line-clamp-2 text-xs w-[90%]">
         {(anime.title as ITitle).english || anime.title.toString()}
       </span>
     </div>
