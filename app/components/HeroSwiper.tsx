@@ -15,6 +15,7 @@ const HeroSwiper = ({ trendings }: Props) => {
         delay: 5000,
         disableOnInteraction: false,
       }}
+      loop
       modules={[Autoplay]}
     >
       {trendings.map((trending, index) => (

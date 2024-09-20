@@ -9,7 +9,7 @@ interface Props {
 
 const AnimeCard = ({ anime }: Props) => {
   return (
-    <div className="w-28">
+    <div className="flex flex-col items-center w-28">
       <AspectRatio ratio={9 / 12.5}>
         <Image
           src={anime.image || ""}

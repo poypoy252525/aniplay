@@ -4,10 +4,27 @@ import HeroSwiper from "./components/HeroSwiper";
 import AnimeList from "./components/AnimeList";
 import { Genres } from "@consumet/extensions";
 
+function getCurrentAnimeSeason() {
+  const month = new Date().getMonth() + 1; // getMonth() returns 0-based month
+  const year = new Date().getFullYear();
+
+  let season;
+
+  if (month >= 1 && month <= 3) {
+    season = "WINTER";
+  } else if (month >= 4 && month <= 6) {
+    season = "SPRING";
+  } else if (month >= 7 && month <= 9) {
+    season = "SUMMER";
+  } else {
+    season = "FALL";
+  }
+
+  return { season, year };
+}
+
 const Home = async () => {
-  const currentYear = new Date().toLocaleDateString("en-US", {
-    year: "numeric",
-  });
+  const { season, year: currentYear } = getCurrentAnimeSeason();
   const { results: trendings } = await anilist.fetchTrendingAnime();
   const { results: popular } = await anilist.fetchPopularAnime();
   const { results: airing } = await anilist.advancedSearch(
@@ -16,16 +33,16 @@ const Home = async () => {
     1,
     10,
     "TV",
+    ["SCORE_DESC", "POPULARITY_DESC"],
     undefined,
     undefined,
-    undefined,
-    parseInt(currentYear),
+    currentYear,
     "RELEASING",
-    undefined
+    season
   );
 
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="flex flex-col space-y-8">
       <div>
         <HeroSwiper trendings={trendings} />
       </div>
