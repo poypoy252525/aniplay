@@ -1,8 +1,7 @@
-import { anilist, gogoanime } from "@/api/api";
+import { anilist } from "@/api/api";
 import "swiper/css";
-import HeroSwiper from "./components/HeroSwiper";
 import AnimeList from "./components/AnimeList";
-import { Genres } from "@consumet/extensions";
+import HeroSwiper from "./components/HeroSwiper";
 
 function getCurrentAnimeSeason() {
   const month = new Date().getMonth() + 1; // getMonth() returns 0-based month

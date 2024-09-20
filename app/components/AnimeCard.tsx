@@ -14,8 +14,8 @@ const AnimeCard = ({ anime }: Props) => {
         <Image
           src={anime.image || ""}
           alt="thumbnail"
-          width={300}
-          height={400}
+          width={60}
+          height={120}
           className="w-full h-full rounded-xl mb-1 object-cover"
         />
       </AspectRatio>

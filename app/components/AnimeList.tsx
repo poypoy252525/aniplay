@@ -1,11 +1,10 @@
 "use client";
 
-import { IAnimeResult, ITitle } from "@consumet/extensions";
-import React from "react";
+import { IAnimeResult } from "@consumet/extensions";
+import "swiper/css";
 import { FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AnimeCard from "./AnimeCard";
-import "swiper/css";
 
 interface Props {
   animeList: IAnimeResult[];
