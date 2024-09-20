@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { IAnimeResult, ITitle, MediaStatus } from "@consumet/extensions";
-import { Play, Star } from "lucide-react";
+import { CalendarDays, Play, Star } from "lucide-react";
 import Image from "next/image";
 
 interface Props {
@@ -45,9 +45,15 @@ const Hero = ({ trending, index }: Props) => {
               {trending.rating}
             </span>
           )}
-          <span>{trending.type}</span>
+          <span className="flex items-center justify-center">
+            <Play className="w-3 h-3 mr-1" />
+            {trending.type}
+          </span>
           <span className={`${color}`}>{trending.status?.toUpperCase()}</span>
-          <span>{trending.releaseDate}</span>
+          <span className="flex items-center justify-center">
+            <CalendarDays className="w-3 h-3 mr-1" />
+            {trending.releaseDate}
+          </span>
         </div>
         <div>
           <Button className="rounded-full bg-cyan-600 text-white" size="sm">
