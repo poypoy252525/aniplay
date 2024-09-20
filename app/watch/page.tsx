@@ -1,7 +1,5 @@
-import { IAnimeInfo, META } from "@consumet/extensions";
-import { GetServerSidePropsContext } from "next";
+import { META } from "@consumet/extensions";
 import Link from "next/link";
-import { Suspense } from "react";
 
 interface Props {
   searchParams: { id: string };

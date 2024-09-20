@@ -1,9 +1,8 @@
 "use client";
 import { IAnimeResult } from "@consumet/extensions";
-import React from "react";
+import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Hero from "./Hero";
-import { Autoplay } from "swiper/modules";
 
 interface Props {
   trendings: IAnimeResult[];
@@ -12,11 +11,11 @@ interface Props {
 const HeroSwiper = ({ trendings }: Props) => {
   return (
     <Swiper
-    //   autoplay={{
-    //     delay: 5000,
-    //     disableOnInteraction: false,
-    //   }}
-    //   modules={[Autoplay]}
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
+      modules={[Autoplay]}
     >
       {trendings.map((trending, index) => (
         <SwiperSlide key={trending.id}>

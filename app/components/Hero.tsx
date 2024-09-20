@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { IAnimeResult, ITitle, MediaStatus } from "@consumet/extensions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Play, Star } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
 interface Props {
   trending: IAnimeResult;
@@ -17,14 +15,12 @@ const Hero = ({ trending, index }: Props) => {
       color = "text-green-500";
       break;
     case MediaStatus.NOT_YET_AIRED:
-      color = "text-red";
+      color = "text-red-500";
       break;
     default:
       color = "text-white";
       break;
   }
-
-  console.log(color);
 
   return (
     <div className="relative w-full h-[300px] ">
