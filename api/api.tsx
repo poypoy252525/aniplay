@@ -67,3 +67,40 @@ export const fetchAiringSchedule = async (
 
   return result.data;
 };
+
+export const advancedSearch = async (
+  query?: string,
+  type?: string,
+  page?: number,
+  perPage?: number,
+  season?: string,
+  sort?: string[],
+  format?: string,
+  genres?: string[],
+  id?: string,
+  year?: number,
+  status?: string
+): Promise<ISearch<IAnimeResult>> => {
+  try {
+    const result = await axios.get(`${baseURL}/meta/anilist/advanced-search`, {
+      params: {
+        query,
+        ...(type && { type }),
+        ...(page && { page }),
+        ...(perPage && { perPage }),
+        ...(season && { season }),
+        ...(format && { format }),
+        ...(sort && { sort }),
+        ...(genres && { genres }),
+        ...(id && { id }),
+        ...(year && { year: year.toString() }),
+        ...(status && { status }),
+      },
+    });
+
+    return result.data;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error();
+  }
+};

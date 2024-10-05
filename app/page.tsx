@@ -1,4 +1,5 @@
 import {
+  advancedSearch,
   anilist,
   fetchAiringSchedule,
   fetchPopularAnime,
@@ -31,18 +32,18 @@ const Home = async () => {
   const { season, year: currentYear } = getCurrentAnimeSeason();
   const { results: trendings } = await fetchTrendingAnime();
   const { results: popular } = await fetchPopularAnime();
-  const { results: airing } = await anilist.advancedSearch(
+  const { results: airing } = await advancedSearch(
     undefined,
     undefined,
     1,
     10,
+    season,
     undefined,
-    ["POPULARITY_DESC", "SCORE_DESC"],
+    undefined,
     undefined,
     undefined,
     currentYear,
-    "RELEASING",
-    season
+    "RELEASING"
   );
 
   return (

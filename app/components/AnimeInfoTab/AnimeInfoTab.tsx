@@ -7,7 +7,7 @@ import Characters from "./Characters";
 const AnimeInfoTab = ({ anime }: { anime: IAnimeInfo }) => {
   return (
     <Tabs defaultValue="overview">
-      <TabsList className="bg-transparent">
+      <TabsList className="bg-transparent mb-3">
         <TabsTrigger
           value="overview"
           className="border-b bg-transparent dark:border-b-black data-[state=active]:dark:border-b-white rounded-none"

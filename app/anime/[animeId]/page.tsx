@@ -60,7 +60,7 @@ const AnimeInfoPage = async ({ params }: Props) => {
               <Star className="w-3 h-3" />
               {anime.rating}
             </span>
-            <Separator orientation="vertical" />
+            <Separator orientation="vertical" className="bg-muted-foreground" />
             <span className={`text-sm ${statusStyle(anime.status)}`}>
               {anime.status}
             </span>
