@@ -1,7 +1,12 @@
-import { anilist } from "@/api/api";
+import {
+  anilist,
+  fetchAiringSchedule,
+  fetchPopularAnime,
+  fetchTrendingAnime,
+} from "@/api/api";
 import "swiper/css";
 import AnimeList from "./components/AnimeList";
-import HeroSwiper from "./components/HeroSwiper";
+import Carousel from "./components/Carousel";
 
 function getCurrentAnimeSeason() {
   const month = new Date().getMonth() + 1; // getMonth() returns 0-based month
@@ -24,15 +29,15 @@ function getCurrentAnimeSeason() {
 
 const Home = async () => {
   const { season, year: currentYear } = getCurrentAnimeSeason();
-  const { results: trendings } = await anilist.fetchTrendingAnime();
-  const { results: popular } = await anilist.fetchPopularAnime();
+  const { results: trendings } = await fetchTrendingAnime();
+  const { results: popular } = await fetchPopularAnime();
   const { results: airing } = await anilist.advancedSearch(
     undefined,
     undefined,
     1,
     10,
-    "TV",
-    ["SCORE_DESC", "POPULARITY_DESC"],
+    undefined,
+    ["POPULARITY_DESC", "SCORE_DESC"],
     undefined,
     undefined,
     currentYear,
@@ -43,7 +48,7 @@ const Home = async () => {
   return (
     <div className="flex flex-col space-y-8">
       <div>
-        <HeroSwiper trendings={trendings} />
+        <Carousel trendings={trendings} />
       </div>
       <div>
         <AnimeList animeList={airing} title="Top airing" />
@@ -54,5 +59,7 @@ const Home = async () => {
     </div>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default Home;

@@ -8,7 +8,7 @@ interface Props {
   index: number;
 }
 
-const Hero = ({ trending, index }: Props) => {
+const CarouselItem = ({ trending, index }: Props) => {
   let color;
   switch (trending.status) {
     case MediaStatus.ONGOING:
@@ -31,7 +31,7 @@ const Hero = ({ trending, index }: Props) => {
         height={300}
         className="w-full h-full object-cover"
       />
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t dark:from-black from-white" />
       <div className="absolute bottom-6 left-0 px-6 flex flex-col space-y-2">
         <p className="font-medium text-cyan-600">{`#${index} Trending`}</p>
         <p className="font-bold text-xl line-clamp-2">
@@ -56,7 +56,10 @@ const Hero = ({ trending, index }: Props) => {
           </span>
         </div>
         <div>
-          <Button className="rounded-full bg-cyan-600 text-white" size="sm">
+          <Button
+            className="rounded-full bg-cyan-600 focus:bg-cyan-800 text-white"
+            size="sm"
+          >
             <Play className="w-4 h-4 mr-1" />
             Watch now
           </Button>
@@ -66,4 +69,4 @@ const Hero = ({ trending, index }: Props) => {
   );
 };
 
-export default Hero;
+export default CarouselItem;

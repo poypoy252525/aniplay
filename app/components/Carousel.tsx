@@ -2,13 +2,13 @@
 import { IAnimeResult } from "@consumet/extensions";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Hero from "./Hero";
+import CarouselItem from "./CarouselItem";
 
 interface Props {
   trendings: IAnimeResult[];
 }
 
-const HeroSwiper = ({ trendings }: Props) => {
+const Carousel = ({ trendings }: Props) => {
   return (
     <Swiper
       autoplay={{
@@ -20,11 +20,11 @@ const HeroSwiper = ({ trendings }: Props) => {
     >
       {trendings.map((trending, index) => (
         <SwiperSlide key={trending.id}>
-          <Hero trending={trending} index={index + 1} />
+          <CarouselItem trending={trending} index={index + 1} />
         </SwiperSlide>
       ))}
     </Swiper>
   );
 };
 
-export default HeroSwiper;
+export default Carousel;

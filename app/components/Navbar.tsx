@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
@@ -24,9 +25,11 @@ const Navbar = () => {
       } transition-all duration-300`}
     >
       <div className="flex items-center w-full h-full px-4">
-        <span className="text-3xl font-bold tracking-tight">
-          Ani<span className="text-cyan-600">play</span>
-        </span>
+        <Link href={`/`}>
+          <span className="text-3xl font-bold tracking-tight">
+            Ani<span className="text-cyan-600">play</span>
+          </span>
+        </Link>
       </div>
     </nav>
   );

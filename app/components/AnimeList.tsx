@@ -18,15 +18,15 @@ const AnimeList = ({ animeList, title }: Props) => {
         <div className="h-[1.55rem] w-[6px] bg-white rounded-xl mr-2" />
         <span className="text-xl font-semibold">{title}</span>
       </div>
-      <Swiper slidesPerView="auto" freeMode modules={[FreeMode]}>
+      <div className="flex overflow-auto no-scrollbar">
         {animeList.map((anime) => (
-          <SwiperSlide key={anime.id} style={{ width: "auto" }}>
+          <div key={anime.id}>
             <div className="mx-2">
               <AnimeCard anime={anime} />
             </div>
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };
