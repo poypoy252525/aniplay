@@ -1,4 +1,5 @@
 "use client";
+import { formatDate } from "@/utils";
 import { IAnimeInfo } from "@consumet/extensions";
 import React, { useState } from "react";
 
@@ -12,10 +13,6 @@ const getTimeUntilAiring = (seconds: number): string => {
   days = Math.floor(days % 24);
 
   return `${days}d ${hours}h ${minutes}m`;
-};
-
-const formatDate = (day?: number, month?: number, year?: number): Date => {
-  return new Date(`${year}-${month}-${day}`);
 };
 
 const Overview = ({ anime }: { anime: IAnimeInfo }) => {
@@ -75,7 +72,7 @@ const Overview = ({ anime }: { anime: IAnimeInfo }) => {
             </React.Fragment>
           )}
           {animeDetails.map((detail) => (
-            <React.Fragment>
+            <React.Fragment key={detail.value}>
               <span className="col-span-4 text-sm font-semibold">
                 {detail.label}
               </span>

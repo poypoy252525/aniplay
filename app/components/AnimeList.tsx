@@ -2,8 +2,6 @@
 
 import { IAnimeResult } from "@consumet/extensions";
 import "swiper/css";
-import { FreeMode } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import AnimeCard from "./AnimeCard";
 
 interface Props {

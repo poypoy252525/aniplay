@@ -1,20 +1,20 @@
 "use client";
-import { IAnimeInfo } from "@consumet/extensions";
+import { AnimeInfo } from "@/types/AnimeInfo";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface Props {
-  anime: IAnimeInfo;
+  anime: AnimeInfo;
 }
 
 const Characters = ({ anime }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
-  console.log(anime.characters[0]);
+
   return (
     <div className="w-full">
       <span className="text-xl font-bold">Characters</span>
       <div className="flex w-full overflow-auto space-x-3 no-scrollbar">
-        {anime.characters.map((character: any, index: number) => (
+        {anime.characters.map((character, index: number) => (
           <div
             className="relative flex-shrink-0 rounded-xl overflow-hidden"
             key={index}

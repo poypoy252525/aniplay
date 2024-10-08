@@ -1,10 +1,4 @@
-import {
-  advancedSearch,
-  anilist,
-  fetchAiringSchedule,
-  fetchPopularAnime,
-  fetchTrendingAnime,
-} from "@/api/api";
+import { anilist } from "@/server/api";
 import "swiper/css";
 import AnimeList from "./components/AnimeList";
 import Carousel from "./components/Carousel";
@@ -30,20 +24,20 @@ function getCurrentAnimeSeason() {
 
 const Home = async () => {
   const { season, year: currentYear } = getCurrentAnimeSeason();
-  const { results: trendings } = await fetchTrendingAnime();
-  const { results: popular } = await fetchPopularAnime();
-  const { results: airing } = await advancedSearch(
+  const { results: trendings } = await anilist.fetchTrendingAnime();
+  const { results: popular } = await anilist.fetchPopularAnime();
+  const { results: airing } = await anilist.advancedSearch(
     undefined,
     undefined,
     1,
     10,
-    season,
     undefined,
     undefined,
     undefined,
     undefined,
     currentYear,
-    "RELEASING"
+    "RELEASING",
+    season
   );
 
   return (

@@ -1,9 +1,11 @@
-import { anilist, fetchAnimeInfo, gogoanime, zoro } from "@/api/api";
 import AnimeInfoTab from "@/app/components/AnimeInfoTab/AnimeInfoTab";
 import AnimeList from "@/app/components/AnimeList";
+import EpisodeList from "@/app/components/EpisodeList";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { ANIME, ITitle, MediaStatus } from "@consumet/extensions";
+import { anilist } from "@/server/api";
+import { AnimeInfo } from "@/types/AnimeInfo";
+import { ITitle, MediaStatus } from "@consumet/extensions";
 import { Play, Star } from "lucide-react";
 import Image from "next/image";
 
@@ -24,8 +26,8 @@ const statusStyle = (mediaStatus: MediaStatus | undefined): string => {
   return status;
 };
 
-const AnimeInfoPage = async ({ params }: Props) => {
-  const anime = await fetchAnimeInfo(params.animeId);
+const AnimeInfoPage = async ({ params: { animeId } }: Props) => {
+  const anime = (await anilist.fetchAnimeInfo(animeId)) as AnimeInfo;
   const title = anime.title as ITitle;
 
   return (
@@ -75,6 +77,9 @@ const AnimeInfoPage = async ({ params }: Props) => {
         </div>
         <div className="px-2">
           <AnimeInfoTab anime={anime} />
+        </div>
+        <div className="px-2">
+          <EpisodeList anime={anime} />
         </div>
         {anime.recommendations?.length !== 0 && (
           <div>
