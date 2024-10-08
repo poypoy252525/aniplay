@@ -25,7 +25,9 @@ const Characters = ({ anime }: Props) => {
               alt="character info"
               src={
                 selectedIndex === index
-                  ? character.voiceActors[0].image || ""
+                  ? character.voiceActors[0]
+                    ? character.voiceActors[0].image
+                    : ""
                   : character.image
               }
               width={200}
@@ -37,7 +39,9 @@ const Characters = ({ anime }: Props) => {
             <div className="absolute bottom-0 left-0 flex flex-col ps-2 pb-2">
               <span className="text-sm font-semibold">
                 {selectedIndex === index
-                  ? character.voiceActors[0].name.full
+                  ? character.voiceActors[0]
+                    ? character.voiceActors[0].name.full
+                    : ""
                   : character.name.full}
               </span>
               <span className="text-xs font-semibold text-muted-foreground">
