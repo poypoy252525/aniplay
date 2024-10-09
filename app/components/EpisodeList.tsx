@@ -15,20 +15,17 @@ const EpisodeList = ({ anime }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [episodes, setEpisodes] = useState<IAnimeEpisode[]>();
+  const [episodeList, setEpisodeList] = useState<IAnimeEpisode[]>();
 
   const fetchEpisodeList = async () => {
     setLoading(true);
     try {
       const { data: episodes } = await axios.get<IAnimeEpisode[]>(
-        `/api/anime/${anime.id}/episodes`,
-        {
-          params: {
-            malId: anime.malId,
-          },
-        }
+        `/api/anime/${anime.id}/episodes`
       );
       const episodeList = await anilist.fetchEpisodesListById(anime.id);
       console.log(episodeList);
+      setEpisodeList(episodeList);
       if (!episodes) {
         console.log(episodes);
         setEpisodes([]);
@@ -108,6 +105,9 @@ const EpisodeList = ({ anime }: Props) => {
             No episodes found.
           </div>
         )}
+        {episodeList?.map((episode) => (
+          <span key={episode.id}>{episode.number}</span>
+        ))}
       </div>
     </div>
   );
