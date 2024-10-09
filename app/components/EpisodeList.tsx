@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { IAnimeEpisode, IAnimeInfo } from "@consumet/extensions";
 import axios from "axios";
