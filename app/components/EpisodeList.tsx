@@ -1,5 +1,6 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { anilist } from "@/server/api";
 import { IAnimeEpisode, IAnimeInfo } from "@consumet/extensions";
 import axios from "axios";
 import { RefreshCcw } from "lucide-react";
@@ -19,8 +20,15 @@ const EpisodeList = ({ anime }: Props) => {
     setLoading(true);
     try {
       const { data: episodes } = await axios.get<IAnimeEpisode[]>(
-        `/api/anime/${anime.id}/episodes`
+        `/api/anime/${anime.id}/episodes`,
+        {
+          params: {
+            malId: anime.malId,
+          },
+        }
       );
+      const episodeList = await anilist.fetchEpisodesListById(anime.id);
+      console.log(episodeList);
       if (!episodes) {
         console.log(episodes);
         setEpisodes([]);
