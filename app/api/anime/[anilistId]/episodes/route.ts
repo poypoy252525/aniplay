@@ -1,30 +1,13 @@
-import { anilist } from "@/server/api";
 import { ApiResponse } from "@/types/Episode";
+import { IAnimeEpisode } from "@consumet/extensions";
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-// const fetchEpisodesListByMalId = async (malId: string) => {
-//   try {
-//     const { data: results } = await axios.get(
-//       `https://api.malsync.moe/mal/anime/${malId}`
-//     );
-
-//     const gogoanimeId = Object.keys(results.Sites.Gogoanime)[0];
-
-//     const gogo = new ANIME.Gogoanime();
-//     const result = await gogo.fetchAnimeInfo(gogoanimeId);
-
-//     return result.episodes;
-//   } catch (error) {
-//     console.error("Failed to fetch episode lists", error);
-//     throw error;
-//   }
-// };
-
-export const GET = async (
+export const POST = async (
   request: NextRequest,
   { params }: { params: { anilistId: string } }
 ) => {
+  let episodeList: IAnimeEpisode[] = await request.json();
   try {
     const { data: results } = await axios.get<ApiResponse>(
       `https://api.ani.zip/mappings?anilist_id=${params.anilistId}`
@@ -32,7 +15,6 @@ export const GET = async (
 
     console.log("API response received:", results);
 
-    let episodeList = await anilist.fetchEpisodesListById(params.anilistId);
     if (!episodeList || !episodeList.length) {
       return NextResponse.json(
         { error: "No episode list found." },
