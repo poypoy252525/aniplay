@@ -46,9 +46,12 @@ const EpisodeList = ({ anime }: Props) => {
           <div className="h-[1.55rem] w-[6px] bg-white rounded-xl mr-2" />
           <span className="text-xl font-semibold">Episodes</span>
         </div>
-        <Button size="icon" variant="ghost" onClick={() => fetchEpisodeList()}>
+        <span
+          className={`ms-2 ${isLoading ? "animate-spin" : ""}`}
+          onClick={() => fetchEpisodeList()}
+        >
           <RefreshCcw className="w-4 h-4" />
-        </Button>
+        </span>
       </div>
       <div className="space-y-3 px-1 max-h-[500px] overflow-auto no-scrollbar">
         {isLoading ? (

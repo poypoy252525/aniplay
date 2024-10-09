@@ -21,7 +21,7 @@ export const GET = async (
 
     if (!episodeList.length) {
       episodeList = await anilist.fetchEpisodesListById(params.anilistId);
-      console.log("Fetched episode list:", episodeList);
+      console.error("Failed to fetch episode list:", episodeList);
     }
 
     if (!results || !results.episodes) {
