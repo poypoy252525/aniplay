@@ -1,7 +1,9 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { IAnimeEpisode, IAnimeInfo } from "@consumet/extensions";
 import axios from "axios";
+import { RefreshCcw } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -14,33 +16,39 @@ const EpisodeList = ({ anime }: Props) => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [episodes, setEpisodes] = useState<IAnimeEpisode[]>();
 
-  useEffect(() => {
-    const fetchEpisodeList = async () => {
-      setLoading(true);
-      try {
-        const { data: episodes } = await axios.get<IAnimeEpisode[]>(
-          `/api/anime/${anime.id}/episodes`
-        );
-        if (!episodes) {
-          console.log(episodes);
-          setEpisodes([]);
-          return;
-        }
-        setEpisodes(episodes);
-      } catch (error) {
-        throw error;
-      } finally {
-        setLoading(false);
+  const fetchEpisodeList = async () => {
+    setLoading(true);
+    try {
+      const { data: episodes } = await axios.get<IAnimeEpisode[]>(
+        `/api/anime/${anime.id}/episodes`
+      );
+      if (!episodes) {
+        console.log(episodes);
+        setEpisodes([]);
+        return;
       }
-    };
+      setEpisodes(episodes);
+    } catch (error) {
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchEpisodeList();
   }, [anime.id]);
 
   return (
     <div style={{ userSelect: "none" }}>
       <div className="flex items-center mx-2 mb-2">
-        <div className="h-[1.55rem] w-[6px] bg-white rounded-xl mr-2" />
-        <span className="text-xl font-semibold">Episodes</span>
+        <div className="flex items-center">
+          <div className="h-[1.55rem] w-[6px] bg-white rounded-xl mr-2" />
+          <span className="text-xl font-semibold">Episodes</span>
+        </div>
+        <Button size="icon" variant="ghost" onClick={() => fetchEpisodeList()}>
+          <RefreshCcw className="w-4 h-4" />
+        </Button>
       </div>
       <div className="space-y-3 px-1 max-h-[500px] overflow-auto no-scrollbar">
         {isLoading ? (
