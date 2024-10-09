@@ -19,6 +19,11 @@ export const GET = async (
     let episodeList = await anilist.fetchEpisodesListById(params.anilistId);
     console.log("Fetched episode list:", episodeList);
 
+    if (!episodeList.length) {
+      let episodeList = await anilist.fetchEpisodesListById(params.anilistId);
+      console.log("Fetched episode list:", episodeList);
+    }
+
     if (!results || !results.episodes) {
       console.error(`No episodes found for anilistId: ${params.anilistId}`);
       return NextResponse.json(
