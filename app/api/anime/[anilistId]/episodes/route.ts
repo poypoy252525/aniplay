@@ -20,7 +20,7 @@ export const GET = async (
     console.log("Fetched episode list:", episodeList);
 
     if (!episodeList.length) {
-      let episodeList = await anilist.fetchEpisodesListById(params.anilistId);
+      episodeList = await anilist.fetchEpisodesListById(params.anilistId);
       console.log("Fetched episode list:", episodeList);
     }
 
