@@ -22,6 +22,7 @@ const EpisodeList = ({ anime }: Props) => {
           `/api/anime/${anime.id}/episodes`
         );
         if (!episodes) {
+          console.log(episodes);
           setEpisodes([]);
           return;
         }
