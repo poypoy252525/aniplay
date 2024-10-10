@@ -1,3 +1,4 @@
+import { anilist } from "@/server/api";
 import { ApiResponse } from "@/types/Episode";
 import { IAnimeEpisode } from "@consumet/extensions";
 import axios from "axios";
@@ -21,7 +22,15 @@ export const POST = async (
         { status: 404 }
       );
     }
-    console.log("Fetched episode list:", episodeList);
+
+    let episodes: IAnimeEpisode[];
+
+    try {
+      episodes = await anilist.fetchEpisodesListById(params.anilistId);
+      console.log("episode list from consumet: ", episodes);
+    } catch (error) {
+      console.log(error);
+    }
 
     if (!results || !results.episodes) {
       console.error(`No episodes found for anilistId: ${params.anilistId}`);
@@ -35,7 +44,9 @@ export const POST = async (
       id: episode.id,
       number: episode.number,
       description:
-        results.episodes[episode.number]?.overview || episode.description,
+        results.episodes[episode.number]?.summary ||
+        results.episodes[episode.number]?.overview ||
+        episode.description,
       image: results.episodes[episode.number]?.image || episode.image,
       imageHash: episode.imageHash,
       isFiller: episode.isFiller,

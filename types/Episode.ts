@@ -18,6 +18,7 @@ export interface Episode {
   anidbEid: number;
   length: number;
   airdate: string;
+  summary: string;
 }
 
 export interface ApiResponse {
