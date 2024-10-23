@@ -40,6 +40,10 @@ export const POST = async (
       );
     }
 
+    const mapEpisodeFromConsumet = (episodeNumber: number) => {
+      return episodes.find((episode) => episode.number === episodeNumber);
+    };
+
     episodeList = episodeList.map((episode) => ({
       id: episode.id,
       number: episode.number,
@@ -47,7 +51,9 @@ export const POST = async (
         results.episodes[episode.number]?.summary ||
         results.episodes[episode.number]?.overview ||
         episode.description,
-      image: results.episodes[episode.number]?.image || episode.image,
+      image:
+        results.episodes[episode.number]?.image ||
+        mapEpisodeFromConsumet(episode.number)?.image,
       imageHash: episode.imageHash,
       isFiller: episode.isFiller,
       releaseDate: episode.releaseDate,
