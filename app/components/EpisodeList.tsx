@@ -72,7 +72,7 @@ const EpisodeList = ({ anime }: Props) => {
               <div className="w-[125px] rounded-lg overflow-hidden relative">
                 <Image
                   alt={episode.title || episode.id}
-                  src={episode.image || anime?.cover || ""}
+                  src={anime?.cover || anime.image || ""}
                   width={70}
                   height={70}
                   className="w-full h-full object-cover"
